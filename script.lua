@@ -69,4 +69,175 @@ if onlineData then
 else
     warn("❌ ไม่สามารถดึงข้อมูลเวอร์ชันได้ กรุณาตรวจสอบการเชื่อมต่ออินเทอร์เน็ต")
 end
-print("--------------------------------------------------")
+print("--------------------------------------------------")-- ==========================================
+-- SCRIPT: Delta-Style Floating UI & Features
+-- ==========================================
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local UserInputService = game:GetService("UserInputService")
+local TweenService = game:GetService("TweenService")
+
+local player = Players.LocalPlayer
+local playerGui = player:WaitForChild("PlayerGui")
+
+-- ลบ UI เก่าทิ้งก่อนสร้างใหม่ (ป้องกันการซ้ำซ้อน)
+if CoreGui:FindFirstChild("DeltaStyleUI") then
+    CoreGui.DeltaStyleUI:Destroy()
+end
+
+-- สร้าง ScreenGui หลัก
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "DeltaStyleUI"
+screenGui.Parent = CoreGui
+screenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+-- 1. ปุ่มเปิด/ปิดเมนู (Delta Floating Button - รูปโลโก้ลอยได้)
+local toggleBtn = Instance.new("ImageButton")
+toggleBtn.Name = "ToggleButton"
+toggleBtn.Parent = screenGui
+toggleBtn.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
+toggleBtn.Position = UDim2.new(0.05, 0, 0.2, 0)
+toggleBtn.Size = UDim2.new(0, 50, 0, 50)
+toggleBtn.Image = "rbxassetid://6023426915" -- ไอคอนโลโก้จำลองสไตล์ Delta
+toggleBtn.Active = true
+toggleBtn.Draggable = true -- ทำให้ลากย้ายตำแหน่งปุ่มบนหน้าจอมือถือได้
+
+local btnCorner = Instance.new("UICorner")
+btnCorner.CornerRadius = UDim.new(1, 0) -- ทำปุ่มให้กลมมน
+btnCorner.Parent = toggleBtn
+
+-- 2. หน้าต่างหลักของ Executor (Main Frame)
+local mainFrame = Instance.new("Frame")
+mainFrame.Name = "MainFrame"
+mainFrame.Parent = screenGui
+mainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+mainFrame.BorderSizePixel = 0
+mainFrame.Position = UDim2.new(0.2, 0, 0.2, 0)
+mainFrame.Size = UDim2.new(0, 450, 0, 260)
+mainFrame.Visible = false -- เริ่มต้นซ่อนไว้ กดปุ่มกลมถึงจะแสดง
+mainFrame.Active = true
+mainFrame.Draggable = true -- ลากขยับหน้าต่างได้
+
+local frameCorner = Instance.new("UICorner")
+frameCorner.CornerRadius = UDim.new(0, 8)
+frameCorner.Parent = mainFrame
+
+-- แถบหัวข้อด้านบน (Top Bar)
+local topBar = Instance.new("Frame")
+topBar.Parent = mainFrame
+topBar.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+topBar.Size = UDim2.new(1, 0, 0, 35)
+
+local topCorner = Instance.new("UICorner")
+topCorner.CornerRadius = UDim.new(0, 8)
+topCorner.Parent = topBar
+
+local titleLabel = Instance.new("TextLabel")
+titleLabel.Parent = topBar
+titleLabel.BackgroundTransparency = 1
+titleLabel.Position = UDim2.new(0.03, 0, 0, 0)
+titleLabel.Size = UDim2.new(0.7, 0, 1, 0)
+titleLabel.Font = Enum.Font.GothamBold
+titleLabel.Text = "Delta Style Executor - Custom"
+titleLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
+titleLabel.TextSize = 14
+titleLabel.TextXAlignment = Enum.TextXAlignment.Left
+
+-- ปุ่มปิดหน้าต่าง (X)
+local closeBtn = Instance.new("TextButton")
+closeBtn.Parent = topBar
+closeBtn.BackgroundColor3 = Color3.fromRGB(220, 50, 50)
+closeBtn.Position = UDim2.new(0.9, 0, 0.15, 0)
+closeBtn.Size = UDim2.new(0, 25, 0, 25)
+closeBtn.Font = Enum.Font.GothamBold
+closeBtn.Text = "X"
+closeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+closeBtn.TextSize = 12
+
+local closeCorner = Instance.new("UICorner")
+closeCorner.CornerRadius = UDim.new(0, 4)
+closeCorner.Parent = closeBtn
+
+-- 3. กล่องพิมพ์ข้อความสคริปต์ (TextEditor / TextBox)
+local textBox = Instance.new("TextBox")
+textBox.Parent = mainFrame
+textBox.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
+textBox.Position = UDim2.new(0.03, 0, 0.2, 0)
+textBox.Size = UDim2.new(0.94, 0, 0.6, 0)
+textBox.Font = Enum.Font.Code
+textBox.PlaceholderText = "-- วางสคริปต์ Lua ของคุณที่นี่..."
+textBox.Text = "print('Hello from Delta-like Executor!')"
+textBox.TextColor3 = Color3.fromRGB(0, 255, 128)
+textBox.TextSize = 13
+textBox.ClearTextOnFocus = false
+textBox.MultiLine = true
+textBox.TextXAlignment = Enum.TextXAlignment.Left
+textBox.TextYAlignment = Enum.TextYAlignment.Top
+
+local textCorner = Instance.new("UICorner")
+textCorner.CornerRadius = UDim.new(0, 6)
+textCorner.Parent = textBox
+
+-- 4. แถบปุ่มควบคุมด้านล่าง (Execute & Clear Buttons)
+local executeBtn = Instance.new("TextButton")
+executeBtn.Parent = mainFrame
+executeBtn.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
+executeBtn.Position = UDim2.new(0.03, 0, 0.83, 0)
+executeBtn.Size = UDim2.new(0.45, 0, 0.13, 0)
+executeBtn.Font = Enum.Font.GothamBold
+executeBtn.Text = "Execute (รัน)"
+executeBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+executeBtn.TextSize = 13
+
+local execCorner = Instance.new("UICorner")
+execCorner.CornerRadius = UDim.new(0, 6)
+execCorner.Parent = executeBtn
+
+local clearBtn = Instance.new("TextButton")
+clearBtn.Parent = mainFrame
+clearBtn.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
+clearBtn.Position = UDim2.new(0.52, 0, 0.83, 0)
+clearBtn.Size = UDim2.new(0.45, 0, 0.13, 0)
+clearBtn.Font = Enum.Font.GothamBold
+clearBtn.Text = "Clear (ล้าง)"
+clearBtn.TextColor3 = Color3.fromRGB(255, 255, 255)
+clearBtn.TextSize = 13
+
+local clearCorner = Instance.new("UICorner")
+clearCorner.CornerRadius = UDim.new(0, 6)
+clearCorner.Parent = clearBtn
+
+-- --- ระบบการทำงานของปุ่มต่างๆ ---
+
+-- กดปุ่มโลโก้เพื่อเปิด/ปิด หน้าต่าง Executor
+toggleBtn.MouseButton1Click:Connect(function()
+    mainFrame.Visible = not mainFrame.Visible
+end)
+
+-- กดปุ่ม X เพื่อปิดหน้าต่าง
+closeBtn.MouseButton1Click:Connect(function()
+    mainFrame.Visible = false
+end)
+
+-- กดปุ่ม Clear เพื่อล้างข้อความ
+clearBtn.MouseButton1Click:Connect(function()
+    textBox.Text = ""
+end)
+
+-- กดปุ่ม Execute เพื่อรันโค้ดที่พิมพ์ในกล่อง
+executeBtn.MouseButton1Click:Connect(function()
+    local codeToRun = textBox.Text
+    local func, err = loadstring(codeToRun)
+    if func then
+        local success, runErr = pcall(func)
+        if not success then
+            warn("Execution Error: " .. tostring(runErr))
+        end
+    else
+        warn("Compile Error: " .. tostring(err))
+    end
+end)
+
+print("✨ โหลดเมนูสไตล์ Delta สำเร็จ!
+    กดที่ปุ่มวงกลมเพื่อเปิดหน้าต่าง Executor")
+
