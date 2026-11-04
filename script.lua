@@ -827,7 +827,9 @@ executeBtn.MouseButton1Click:Connect(function()
     end
 end)
 
-print("✨ โหลดระบบ RCsX Key System + Delta Rainbow เรียบร้อยแล้ว!")
+print("✨ โหลดระบบ RCsX Key System + Delta Rainbow เรียบร้อยแล้ว!")titleLabel.Text = "Gun Executor - Rainbow Edition"
+
+    
 
 
 
