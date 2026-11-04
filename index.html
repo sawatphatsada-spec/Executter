@@ -3,6 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gun Executor & Key System</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .card {
+            background: #16181f;
+            width: 100%;
+            max-width: 420px;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            border: 1px solid #2a2e3d;
+            text-align: center;
+        }
+        .logo-title {
+            font-size: 26px;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff3333, #ff9900);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+        .subtitle { color: #8b92a5; font-size: 14px; margin-bottom: 25px; }
+        .status-badge {
+            display: inline-block;
+            background: rgba(0, 255, 128, 0.1);
+            color: #00ff80;
+            border: 1px solid #00ff80;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        .btn-group { display: flex; flex-direction: column; gap: 15px; }
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+        .btn-download { background: #00aaff; color: #ffffff; box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3); }
+        .btn-download:hover { background: #0088cc; transform: translateY(-2px); }
+        .btn-key { background: #00ff80; color: #0d0e12; box-shadow: 0 4px 15px rgba(0, 255, 128, 0.3); }
+        .btn-key:hover { background: #00cc66; transform: translateY(-2px); }
+        .footer-note { margin-top: 25px; font-size: 12px; color: #5c6275; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <div class="logo-title">GUN EXECUTOR</div>
+        <div class="subtitle">ระบบดาวน์โหลดและรับคีย์ใช้งานประจำวัน</div>
+        
+        <div class="status-badge">✅ สถานะสคริปต์: อัปเดตแล้ว (รองรับ 32/64 บิต)</div>
+
+        <div class="btn-group">
+            <!-- ปุ่มดาวน์โหลด (เปลี่ยนลิงก์ตรง href เป็นลิงก์ไฟล์ของคุณ) -->
+            <a href="https://your-download-link.com/app.apk" class="btn btn-download" target="_blank">
+                📱 ดาวน์โหลด Gun Executor
+            </a>
+
+            <!-- ปุ่ม Get Key (เปลี่ยนลิงก์ตรง href เป็นลิงก์รับคีย์ของคุณ) -->
+            <a href="https://your-key-link.com" class="btn btn-key" target="_blank">
+                🔑 รับคีย์ใช้งาน (Get Key)
+            </a>
+        </div>
+
+        <div class="footer-note">
+            Gun Executor - ปลอดภัย อัปเดตรายวัน ป้องกันการโดนแบน
+        </div>
+    </div>
+
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Download - Executor & Scripts</title>
     <style>
         body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 50px; }
