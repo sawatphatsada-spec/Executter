@@ -3,157 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gun Executor & Key System</title>
+    <title>Gun Executor - Download</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
-            background-color: #0d0e12;
-            color: #ffffff;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            background-color: #0d0e12; color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
         }
         .card {
-            background: #16181f;
-            width: 100%;
-            max-width: 420px;
-            padding: 30px;
-            border-radius: 16px;
+            background: #16181f; width: 100%; max-width: 420px;
+            padding: 30px; border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-            border: 1px solid #2a2e3d;
-            text-align: center;
+            border: 1px solid #2a2e3d; text-align: center;
         }
         .logo-title {
-            font-size: 26px;
-            font-weight: 800;
-            background: linear-gradient(45deg, #ff3333, #ff9900);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            font-size: 26px; font-weight: 800;
+            background: linear-gradient(45deg, #00aaff, #00ff80);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             margin-bottom: 8px;
-            letter-spacing: 1px;
         }
         .subtitle { color: #8b92a5; font-size: 14px; margin-bottom: 25px; }
         .status-badge {
-            display: inline-block;
-            background: rgba(0, 255, 128, 0.1);
-            color: #00ff80;
-            border: 1px solid #00ff80;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 25px;
+            display: inline-block; background: rgba(0, 170, 255, 0.1);
+            color: #00aaff; border: 1px solid #00aaff;
+            padding: 6px 14px; border-radius: 20px; font-size: 12px;
+            font-weight: 600; margin-bottom: 25px;
         }
-        .btn-group { display: flex; flex-direction: column; gap: 15px; }
         .btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px;
-            border-radius: 10px;
-            font-size: 15px;
-            font-weight: 700;
-            text-decoration: none;
-            transition: all 0.2s ease;
+            display: flex; align-items: center; justify-content: center;
+            gap: 10px; width: 100%; padding: 14px; border-radius: 10px;
+            font-size: 15px; font-weight: 700; text-decoration: none;
+            transition: all 0.2s ease; margin-bottom: 12px;
         }
         .btn-download { background: #00aaff; color: #ffffff; box-shadow: 0 4px 15px rgba(0, 170, 255, 0.3); }
         .btn-download:hover { background: #0088cc; transform: translateY(-2px); }
-        .btn-key { background: #00ff80; color: #0d0e12; box-shadow: 0 4px 15px rgba(0, 255, 128, 0.3); }
-        .btn-key:hover { background: #00cc66; transform: translateY(-2px); }
-        .footer-note { margin-top: 25px; font-size: 12px; color: #5c6275; }
+        .btn-link { background: #2a2e3d; color: #b0b0b0; font-size: 13px; }
+        .btn-link:hover { background: #3a3f52; color: #ffffff; }
+        .footer-note { margin-top: 20px; font-size: 12px; color: #5c6275; }
     </style>
 </head>
 <body>
-
     <div class="card">
         <div class="logo-title">GUN EXECUTOR</div>
-        <div class="subtitle">ระบบดาวน์โหลดและรับคีย์ใช้งานประจำวัน</div>
+        <div class="subtitle">ศูนย์ดาวน์โหลดแอปพลิเคชันเวอร์ชันล่าสุด</div>
         
-        <div class="status-badge">✅ สถานะสคริปต์: อัปเดตแล้ว (รองรับ 32/64 บิต)</div>
+        <div class="status-badge">📱 รองรับสถาปัตยกรรม 32 / 64 บิต</div>
 
-        <div class="btn-group">
-            <!-- ปุ่มดาวน์โหลด (เปลี่ยนลิงก์ตรง href เป็นลิงก์ไฟล์ของคุณ) -->
-            <a href="https://your-download-link.com/app.apk" class="btn btn-download" target="_blank">
-                📱 ดาวน์โหลด Gun Executor
-            </a>
+        <!-- ปุ่มดาวน์โหลดไฟล์ APK (ดึงไฟล์จากโฟลเดอร์ downloads ที่เราสร้างไว้) -->
+        <a href="./downloads/delta-v1.apk" class="btn btn-download">
+            📥 ดาวน์โหลด Gun Executor (APK)
+        </a>
 
-            <!-- ปุ่ม Get Key (เปลี่ยนลิงก์ตรง href เป็นลิงก์รับคีย์ของคุณ) -->
-            <a href="https://your-key-link.com" class="btn btn-key" target="_blank">
-                🔑 รับคีย์ใช้งาน (Get Key)
-            </a>
-        </div>
+        <!-- ปุ่มกลับไปหน้า Get Key -->
+        <a href="index.html" class="btn btn-link">
+            🔑 กลับไปหน้า Get Key (รับคีย์)
+        </a>
 
-        <div class="footer-note">
-            Gun Executor - ปลอดภัย อัปเดตรายวัน ป้องกันการโดนแบน
-        </div>
-    </div>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download - Executor & Scripts</title>
-    <style>
-        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 50px; }
-        .container { background: #1e1e1e; max-width: 450px; margin: auto; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 2px solid #333; }
-        h1 { color: #00ff80; font-size: 24px; }
-        p { color: #b0b0b0; font-size: 14px; line-height: 1.5; }
-        .warning-box { background: rgba(255, 50, 50, 0.1); border: 1px solid #ff3232; padding: 10px; border-radius: 6px; margin-bottom: 20px; color: #ff6b6b; font-size: 13px; }
-        .btn-download { display: block; background: #00ff80; color: #121212; padding: 14px; margin-top: 15px; text-decoration: none; border-radius: 6px; font-weight: bold; font-size: 16px; transition: 0.2s; }
-        .btn-download:hover { background: #00cc66; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🚀 ศูนย์ดาวน์โหลดเวอร์ชันล่าสุด</h1>
-        
-        <div class="warning-box">
-            ⚠️ <b>คำเตือน:</b> หากคุณใช้งานเวอร์ชันเก่า ระบบอาจจะบล็อกการทำงานหรือเสี่ยงโดนแบน กรุณาอัปเดตเป็นเวอร์ชันล่าสุดเสมอ!
-        </div>
-
-        <p>เวอร์ชันปัจจุบัน: <b>v1.0.1</b> (รองรับ 32 และ 64 บิต)</p>
-        
-        <!-- เปลี่ยนลิงก์ # เป็นลิงก์ไฟล์ APK หรือ Raw script ของคุณ -->
-        <a href="https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPO/main/script.lua" class="btn-download" target="_blank">📥 คัดลอกลิงก์สคริปต์ล่าสุด</a>
-        <a href="#" class="btn-download" style="background: #00aaff; color: white;">📱 ดาวน์โหลดแอป Executor (APK)</a>
-    </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Key - RCsX & Delta Executor</title>
-    <style>
-        body { background-color: #121212; color: #ffffff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; text-align: center; padding-top: 50px; }
-        .container { background: #1e1e1e; max-width: 400px; margin: auto; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 2px solid #333; }
-        h1 { color: #00aaff; font-size: 24px; }
-        p { color: #b0b0b0; font-size: 14px; }
-        .btn { display: inline-block; background: #00aaff; color: white; padding: 12px 25px; margin-top: 20px; text-decoration: none; border-radius: 6px; font-weight: bold; transition: 0.2s; }
-        .btn:hover { background: #0088cc; }
-        .key-box { background: #2a2a2a; padding: 12px; margin-top: 20px; border-radius: 6px; font-family: monospace; font-size: 16px; color: #00ff80; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>🔑 ระบบรับคีย์ใช้งาน</h1>
-        <p>คลิกปุ่มด้านล่างเพื่อผ่านลิงก์และรับคีย์ของคุณ (ใช้งานได้ 1 วัน / 7 วัน)</p>
-        
-        <!-- เปลี่ยนลิงก์ # เป็นลิงก์ย่อโฆษณาของคุณ เช่น Linkvertise -->
-        <a href="https://linkvertise.com/your-link" class="btn" target="_blank">รับคีย์ (Get Key)</a>
-        
-        <p style="margin-top: 30px;">คีย์ของคุณสำหรับวันนี้:</p>
-        <div class="key-box">RCX-VIP-2026</div>
+        <div class="footer-note">อัปเดตเวอร์ชันล่าสุด ป้องกันการโดนแบน</div>
     </div>
 </body>
 </html>
